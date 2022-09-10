@@ -1,0 +1,315 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Categorie Menu & Slider Area Start Here -->
+    <div class="main-page-banner pb-50 off-white-bg">
+        <div class="container">
+            <div class="row">
+                <!-- Vertical Menu Start Here -->
+                <div class="col-xl-3 col-lg-4 d-none d-lg-block">
+                    <div class="vertical-menu mb-all-30">
+                        <nav>
+                            <ul class="vertical-menu-list">
+                                {% for cat in categories %}
+                                    {% if not cat.parent %}
+<!--                                        <i class="fa fa-angle-right" aria-hidden="true"></i>-->
+                                        <li class=""><a href="/catalog/{{ cat.id }}/"><span><img src="/static/img/vertical-menu/1.png" alt="menu-icon"></span>{{ cat.title }}</a>
+<!--                                            <ul class="ht-dropdown mega-child">-->
+<!--                                                {% for cat_child in categories %}-->
+<!--                                                    {% if cat_child.parent and cat_child.parent.id == cat.id %}-->
+<!--                                                        <li><a href="#">{{ cat_child.title }}</a>-->
+                                                             <!-- category submenu end-->
+        <!--                                                    <ul class="ht-dropdown mega-child">-->
+        <!--                                                        {% for cat_child2 in categories %}-->
+        <!--                                                            {% if cat_child2.parent and cat_child2.parent.id == cat_child.id %}-->
+        <!--                                                                <li><a href="shop.html">{{ cat_child2.title }}</a></li>-->
+        <!--                                                            {% endif %}-->
+        <!--                                                        {% endfor %}-->
+        <!--                                                    </ul>-->
+                                                            <!-- category submenu end-->
+<!--                                                        </li>-->
+<!--                                                    {% endif %}-->
+<!--                                                {% endfor %}-->
+<!--                                            </ul>-->
+                                            <!-- category submenu end-->
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                                <!-- More Categoies Start -->
+<!--                                <li id="cate-toggle" class="category-menu v-cat-menu">-->
+<!--                                    <ul>-->
+<!--                                        <li class="has-sub"><a href="#">More Categories</a>-->
+<!--                                            <ul class="category-sub">-->
+<!--                                                <li><a href="shop.html"><span><img src="img/vertical-menu/11.png" alt="menu-icon"></span>Accessories</a></li>-->
+<!--                                            </ul>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+<!--                                </li>-->
+                                <!-- More Categoies End -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Vertical Menu End Here -->
+                <!-- Slider Area Start Here -->
+                <div class="col-xl-9 col-lg-8 slider_box">
+                    <div class="slider-wrapper theme-default">
+                        <!-- Slider Background  Image Start-->
+                        <div id="slider" class="nivoSlider">
+                            {% for p in photos %}
+                                <a href="/catalog/{{ p.category.id }}/"><img src="/media/{{ p.logo6 }}/" alt="" title="#htmlcaption" /></a>
+                            {% endfor %}
+                        </div>
+                        <!-- Slider Background  Image Start-->
+                    </div>
+                </div>
+                <!-- Slider Area End Here -->
+            </div>
+            <!-- Row End -->
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Categorie Menu & Slider Area End Here -->
+    <div class="hot-deal-products off-white-bg pb-90 pb-sm-50">
+            <div class="container">
+               <!-- Product Title Start -->
+               <div class="post-title pb-30">
+                   <h2>hot deals</h2>
+               </div>
+               <!-- Product Title End -->
+                <!-- Hot Deal Product Activation Start -->
+                <div class="hot-deal-active owl-carousel">
+                    <!-- Single Product Start -->
+                    {% for is_new in is_new %}
+                        <div class="single-product">
+                        <!-- Product Image Start -->
+                        <div class="pro-img">
+                            <a href="/product/{{ is_new.id }}/">
+                                <img class="primary-img" src="/media/{{ is_new.logo }}/" alt="single-product">
+                                <img class="secondary-img" src="/media/{{ is_new.logo }}/" alt="single-product">
+                            </a>
+<!--                            <div class="countdown" data-countdown="2020/03/01"></div>-->
+                            <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                        </div>
+                        <!-- Product Image End -->
+                        <!-- Product Content Start -->
+                        <div class="pro-content">
+                            <div class="pro-info">
+                                <h4><a href="/product/{{ is_new.id }}/">{{ is_new.title }}</a></h4>
+                                <p><span class="price">{{ is_new.price }} tg</span><del class="prev-price">{{ is_new.old_price }} tg</del></p>
+                                <div class="label-product l_sale">20<span class="symbol-percent">%</span></div>
+                            </div>
+                            <div class="pro-actions">
+                                <div class="actions-primary">
+                                    <a href="cart.html" title="Add to Cart"> + Add To Cart</a>
+                                </div>
+                                <div class="actions-secondary">
+                                    <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
+                                    <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to WishList</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product Content End -->
+                    </div>
+                    {% endfor %}
+                    <!-- Single Product End -->
+                </div>
+                <!-- Hot Deal Product Active End -->
+            </div>
+            <!-- Container End -->
+        </div>
+    <!-- Big Banner Start Here -->
+    <div class="big-banner mt-100 pb-85 mt-sm-60 pb-sm-45">
+        <h2 class="section-ttitle2 mb-30">Наша галерея </h2>
+        <div class="container banner-2">
+            {% for gor in gor_photos %}
+            <div class="banner-box">
+                <div class="col-img">
+                    <a href="/catalog/{{ gor.category.id }}/"><img src="/media/{{ gor.logo_gor_1 }}/" alt="banner 3"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="container banner-2">
+            {% for ver in ver_photos %}
+            <div class="banner-box">
+                <div class="col-img">
+                    <a href="/catalog/{{ ver.category.id }}/"><img src="/media/{{ ver.logo_ver_1 }}/" alt="banner 3"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Like Products Area Start Here -->
+    <div class="like-product ptb-95 off-white-bg pt-sm-50 pb-sm-55 ">
+        <div class="container">
+            <div class="like-product-area">
+                <h2 class="section-ttitle2 mb-30">Все наши продукты </h2>
+                <!-- Arrivals Product Activation Start Here -->
+                <div class="like-pro-active owl-carousel">
+                    <!-- Double Product Start -->
+                    {% for all in all_product %}
+                    <div class="double-product">
+                        <!-- Single Product Start -->
+                        <div class="single-product">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="/product/{{ all.id }}/">
+                                    <img class="primary-img" src="/media/{{ all.logo }}/" alt="single-product">
+                                    <img class="secondary-img" src="/media/{{ all.logo }}/" alt="single-product">
+                                </a>
+                                <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <div class="pro-info">
+                                    <h4><a href="/product/{{ all.id }}/">{{ all.title }}</a></h4>
+                                    <p><span class="price">{{ all.price }} tg</span><del class="prev-price">{{ all.old_price }} tg</del></p>
+                                    {% if all.discount %} <div class="label-product l_sale">{{ all.discount }}<span class="symbol-percent">%</span></div> {% endif %}
+                                </div>
+                                <div class="pro-actions">
+                                    <div class="actions-primary">
+                                        <a href="cart.html" title="Add to Cart"> + Add To Cart</a>
+                                    </div>
+                                    <div class="actions-secondary">
+                                        <a href="compare.html" title="Compare"><i class="lnr lnr-sync"></i> <span>Add To Compare</span></a>
+                                        <a href="wishlist.html" title="WishList"><i class="lnr lnr-heart"></i> <span>Add to WishList</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product Content End -->
+                        </div>
+                        <!-- Single Product End -->
+                    </div>
+                    {% endfor %}
+                    <!-- Double Product End -->
+                </div>
+                <!-- Arrivals Product Activation End Here -->
+            </div>
+            <!-- main-product-tab-area-->
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Lile Products Area End Here -->
+    <!-- Brand Banner Area Start Here -->
+    <div class="main-brand-banner pt-95 pb-100 pt-sm-55 pb-sm-60">
+        <div class="container">
+            <div class="like-product-area">
+                <h2 class="section-ttitle2 mb-30">Наши спонсоры </h2>
+                <!-- Arrivals Product Activation Start Here -->
+                <div class="col-lg-7">
+                    <!-- Brand Banner Start -->
+                    <div class="brand-banner owl-carousel">
+                        {% for about in sponsor %}
+                        <div class="single-brand">
+                            <a href="#"><img class="img" src="/media/{{ about.sponsor_logo }}/" alt="brand-image"></a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Brand Banner End -->
+                </div>
+                    <!-- Double Product End -->
+                </div>
+                <!-- Arrivals Product Activation End Here -->
+            </div>
+            <!-- main-product-tab-area-->
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Brand Banner Area End Here -->
+<!--    <div class="big-banner pb-100 pb-sm-60">-->
+<!--        <div class="container big-banner-box">-->
+<!--            <div class="col-img">-->
+<!--                <a href="#">-->
+<!--                <img src="img/banner/5.jpg" alt="">-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="col-img">-->
+<!--                <a href="#">-->
+<!--                <img src="img/banner/h1-banner3.jpg" alt="">-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Container End &ndash;&gt;-->
+<!--    </div>-->
+    <!-- Support Area Start Here -->
+<!--    <div class="support-area bdr-top">-->
+<!--        <div class="container">-->
+<!--            <div class="d-flex flex-wrap text-center">-->
+<!--                <div class="single-support">-->
+<!--                    <div class="support-icon">-->
+<!--                        <i class="lnr lnr-gift"></i>-->
+<!--                    </div>-->
+<!--                    <div class="support-desc">-->
+<!--                        <h6>Great Value</h6>-->
+<!--                        <span>Nunc id ante quis tellus faucibus dictum in eget.</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="single-support">-->
+<!--                    <div class="support-icon">-->
+<!--                        <i class="lnr lnr-rocket" ></i>-->
+<!--                    </div>-->
+<!--                    <div class="support-desc">-->
+<!--                        <h6>Worlwide Delivery</h6>-->
+<!--                        <span>Quisque posuere enim augue, in rhoncus diam dictum non</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="single-support">-->
+<!--                    <div class="support-icon">-->
+<!--                       <i class="lnr lnr-lock"></i>-->
+<!--                    </div>-->
+<!--                    <div class="support-desc">-->
+<!--                        <h6>Safe Payment</h6>-->
+<!--                        <span>Duis suscipit elit sem, sed mattis tellus accumsan.</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="single-support">-->
+<!--                    <div class="support-icon">-->
+<!--                       <i class="lnr lnr-enter-down"></i>-->
+<!--                    </div>-->
+<!--                    <div class="support-desc">-->
+<!--                        <h6>Shop Confidence</h6>-->
+<!--                        <span>Faucibus dictum suscipit eget metus. Duis  elit sem, sed.</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="single-support">-->
+<!--                    <div class="support-icon">-->
+<!--                       <i class="lnr lnr-users"></i>-->
+<!--                    </div>-->
+<!--                    <div class="support-desc">-->
+<!--                        <h6>24/7 Help Center</h6>-->
+<!--                        <span>Quisque posuere enim augue, in rhoncus diam dictum non.</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Container End &ndash;&gt;-->
+<!--    </div>-->
+    <!-- Support Area End Here -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $("#form2").submit(function (e) {
+        e.preventDefault();
+        var serializedData = $(this).serialize();
+         $.ajax({
+             type: 'POST',
+             dataType: 'json',
+             url: $("#form2").attr("action"),
+             data: serializedData,
+             success: function (d) {
+                 if(d['status']==true){
+                     alert("Your course add!!")
+                     location.reload()
+                 }else{
+                     alert(d['errors'])
+                 }
+             },
+             error: function (d){
+                 alert("Error!!!")
+             }
+         });
+    });
+    $('.js-home-active').addClass('active');
+</script>
+{% endblock %}
